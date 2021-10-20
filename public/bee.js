@@ -47,7 +47,7 @@ function drawGraph(src, iter) {
     console.log(data)
     // Add X axis
     var x = d3.scaleLinear()
-        .domain([-100, 100])
+        .domain([-5, 5])
         .range([ 0, width ]);
     svg.append("g")
         .attr("transform", "translate(0," + height + ")")
@@ -55,7 +55,7 @@ function drawGraph(src, iter) {
 
     // Add Y axis
     var y = d3.scaleLinear()
-        .domain([-100, 100])
+        .domain([-5, 5])
         .range([ height, 0]);
     svg.append("g")
         .call(d3.axisLeft(y));
@@ -123,8 +123,8 @@ function iterate(src, i, num_iter) {
 function bestResults(src, num_iter) {
     // set the dimensions and margins of the graph
     var margin = {top: 10, right: 30, bottom: 30, left: 60},
-        width = 460 - margin.left - margin.right,
-        height = 400 - margin.top - margin.bottom;
+        width = 860 - margin.left - margin.right,
+        height = 500 - margin.top - margin.bottom;
 
     // append the svg object to the body of the page
     var svg = d3.select("#my_graph")

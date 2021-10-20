@@ -3,12 +3,13 @@ const { v4: uuidv4 } = require('uuid');
 
 class Bee {
     constructor() {
-        this.position = {x: -100 + 200 * Math.random(), y: -100 + 200 * Math.random()};
+        this.position = {x: -5 + 10 * Math.random(), y: -5 + 10 * Math.random()};
         this.result = -1e9;
     }
     
     calcfitness() {
-        this.result = -(Math.pow(this.position.x, 2) + Math.pow(this.position.x, 2));
+        //this.result = -(Math.pow(this.position.x, 2) + Math.pow(this.position.y, 2));
+        this.result = Math.pow(1 - this.position.x, 2) + 100 * Math.pow(this.position.y - Math.pow(this.position.x, 2), 2);
     }
     
     goTo(pos, span) {
@@ -16,7 +17,7 @@ class Bee {
     }
     
     goToRandom() {
-        this.position = {x: -100 + 200 * Math.random(), y: -100 + 200 * Math.random()};
+        this.position = {x: -5 + 10 * Math.random(), y: -5 + 10 * Math.random()};
     }
     
     get fitness() {
@@ -63,7 +64,7 @@ class Hive {
             res.push({bee: scout, fitness: scout.fitness, scout: false});
         }
         
-        res.sort((rec1, rec2) => rec2.fitness - rec1.fitness);
+        res.sort((rec1, rec2) => rec1.fitness - rec2.fitness);
         
         for (let i = 0; i < res.length; i++) {
             if (i < this.bestsitescount) {
@@ -87,7 +88,7 @@ class Hive {
                     badsites.pop();
                 } else {
                     let emlpoyedBee = new Bee();
-                    emlpoyedBee.goTo(el.bee.current_position, {x: 10, y: 10});
+                    emlpoyedBee.goTo(el.bee.current_position, {x: 0.5, y: 0.5});
                     this.employedBees.push(emlpoyedBee);
                 }
             }
@@ -100,7 +101,7 @@ class Hive {
                     badsites.pop();
                 } else {
                     let emlpoyedBee = new Bee();
-                    emlpoyedBee.goTo(el.bee.current_position, {x: 10, y: 10});
+                    emlpoyedBee.goTo(el.bee.current_position, {x: 0.5, y: 0.5});
                     this.employedBees.push(emlpoyedBee);
                 }
             }
@@ -126,7 +127,7 @@ class Hive {
         fs.writeFileSync(`./${this._id}/iter${this.iter}.csv`, this.results);
         this.results = 'x,y,val\n';
         
-        if (Math.abs(res[0].fitness - 0) > 0.01) {
+        if (Math.abs(res[0].fitness - 0) > 0.1) {
             this.iter++;
             return this.iteration();
         } else {
