@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <script src="https://d3js.org/d3.v4.min.js"></script>
+        <style>
+            form {
+                border: 1px solid black;
+                margin: 15px;
+            }
+            form div, #submit {
+                margin: 10px;
+            }
+            h3 {
+                margin-left: 15px;
+                margin-right: 15px;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Create a div where the graph will take place -->
+        <h3>Bees algorithm</h3>
+        <form>
+            <div>
+                <label for="scoutbees">Number of scout bees: </label>
+                <input type="number" pattern="[0-9]+" name="scoutbees" id="scoutbees" />
+            </div>
+            <div>
+                <label for="selectedbees">Number of selected bees: </label>
+                <input type="number" pattern="[0-9]+" name="selectedbees" id="selectedbees" />
+            </div>
+            <div>
+                <label for="bestbees">Number of best bees: </label>
+                <input type="number" pattern="[0-9]+" name="bestbees" id="bestbees" />
+            </div>
+            <div>
+                <label for="selsites">Number of selected sites: </label>
+                <input type="number" pattern="[0-9]+" name="selsites" id="selsites" />
+            </div>
+            <div>
+                <label for="bestsites">Number of best sites: </label>
+                <input type="number" pattern="[0-9]+" name="bestsites" id="bestsites" />
+            </div>
+            <button type="submit" id="submit">Send</button>
+        </form>
+        <id id="iteration"></id>
+        <div id="my_dataviz"></div>
+        <div id="my_graph"></div>
+        <script src="/bee.js"></script>
+    </body>
+</html>
+
+
